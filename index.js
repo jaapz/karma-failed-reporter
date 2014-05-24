@@ -42,15 +42,11 @@ var FailedReporter = function(baseReporterDecorator, formatError) {
   };
 
   this.currentSuite = [];
-  this.specFailure = function(status) {
-    return (function(browser, result) {
-      if (result.success === false) {
-        if (!this.failedSpecs[browser.id]) {
-            this.failedSpecs[browser.id] = [];
-        }
-        this.failedSpecs[browser.id].push(result);
-      }
-    }).bind(this);
+  this.specFailure = function(browser, result) {
+    if (!this.failedSpecs[browser.id]) {
+        this.failedSpecs[browser.id] = [];
+    }
+    this.failedSpecs[browser.id].push(result);
   };
 };
 
