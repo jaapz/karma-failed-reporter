@@ -43,7 +43,7 @@ var FailedReporter = function(baseReporterDecorator, formatError) {
 
   this.currentSuite = [];
   this.onSpecComplete = function(browser, result) {
-      if (result.success === false) {
+      if (!result.skipped && result.success === false) {
         if (!this.failedSpecs[browser.id]) {
             this.failedSpecs[browser.id] = [];
         }
